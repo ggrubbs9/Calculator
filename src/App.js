@@ -47,115 +47,115 @@ const buttonConfig = [
     label: "Ans",
     bColor: "grey",
     onPress: () => {
-      alert("ok");
+      buttonPress("Ans")
     },
   },
   {
     label: "C",
     bColor: "grey",
     onPress: () => {
-      alert("ok");
+      buttonPress("C")
     },
   },
   {
     label: "CA",
     bColor: "grey",
     onPress: () => {
-      alert("ok");
+      buttonPress("CA")
     },
   },
   {
     label: "+/-",
     bColor: "grey",
     onPress: () => {
-      alert("ok");
+      buttonPress("+/-")
     },
   },
   {
     label: "7",
     onPress: () => {
-      alert("ok");
+      buttonPress(7)
     },
   },
   {
     label: "8",
     onPress: () => {
-      alert("ok");
+      buttonPress(8)
     },
   },
   {
     label: "9",
     onPress: () => {
-      alert("ok");
+      buttonPress(9)
     },
   },
   {
     label: "/",
     bColor: "grey",
     onPress: () => {
-      alert("ok");
+      buttonPress("/")
     },
   },
   {
     label: "4",
     onPress: () => {
-      alert("ok");
+      buttonPress(4)
     },
   },
   {
     label: "5",
     onPress: () => {
-      alert("ok");
+      buttonPress(5)
     },
   },
   {
     label: "6",
     onPress: () => {
-      alert("ok");
+      buttonPress(6)
     },
   },
   {
     label: "x",
     bColor: "grey",
     onPress: () => {
-      alert("ok");
+      buttonPress("x")
     },
   },
   {
     label: "1",
     onPress: () => {
-      alert("ok");
+      buttonPress(1)
     },
   },
   {
     label: "2",
     onPress: () => {
-      alert("ok");
+      buttonPress(2)
     },
   },
   {
     label: "3",
     onPress: () => {
-      alert("ok");
+      buttonPress(3)
     },
   },
   {
     label: "-",
     bColor: "grey",
     onPress: () => {
-      alert("ok");
+      buttonPress("-")
     },
   },
   {
     label: "0",
     onPress: () => {
-      alert("ok");
+      buttonPress(0)
     },
   },
   {
     label: ".",
     onPress: () => {
-      alert("ok");
+      buttonPress(".")
     },
   },
   {
@@ -163,36 +163,41 @@ const buttonConfig = [
     color: "white",
     bColor: "blue",
     onPress: () => {
-      alert("ok");
+      buttonPress("=")
     },
   },
   {
     label: "+",
     bColor: "grey",
     onPress: () => {
-      alert("ok");
+      buttonPress("+")
     },
   },
 ];
 
+function buttonPress(num){
+  alert(num)
+}
+
 const Button = (props) => {
   return (
-    <CustomButton color={props.color} bColor={props.bColor}>
+    <CustomButton onClick={props.onClick} color={props.color} bColor={props.bColor}>
       {props.label}
     </CustomButton>
   );
 };
 
 function App() {
-  const [inputValue, setInputValue] = useState(99999.999);
+  const [inputValue, setInputValue] = useState(0);
+  const [history, setHistory] = useState("");
 
   return (
     <div className="calculator">
       <div className="input">
         <History
           disabled
-          value="9999"
-          onChange={(e) => setInputValue(e.target.value)}
+          value={history}
+          // onChange={(e) => setInputValue(e.target.value)}
         />
         <InputField
           disabled
@@ -204,6 +209,7 @@ function App() {
         {buttonConfig.map((item, index) => {
           return (
             <Button
+              onClick={item.onPress}
               bColor={item.bColor}
               color={item.color}
               label={item.label}
